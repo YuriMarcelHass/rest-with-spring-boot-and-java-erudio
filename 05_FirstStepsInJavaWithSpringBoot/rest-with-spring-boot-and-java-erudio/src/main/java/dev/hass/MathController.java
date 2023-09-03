@@ -1,15 +1,13 @@
 package dev.hass;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.hass.exceptions.UnsupportedMathOperationException;
+
 @RestController
 public class MathController {
-
-	private final AtomicLong counter = new AtomicLong();
 	
 	@GetMapping("/sum/{numberOne}/{numberTwo}")
 	public Double sum(
@@ -17,7 +15,7 @@ public class MathController {
 			@PathVariable(value = "numberTwo") String numberTwo
 		) throws Exception {
 		if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
-			throw new Exception();
+			throw new UnsupportedMathOperationException("Please set a numeric value");
 		}
 		
 		return convertToDouble(numberOne) + convertToDouble(numberTwo);
