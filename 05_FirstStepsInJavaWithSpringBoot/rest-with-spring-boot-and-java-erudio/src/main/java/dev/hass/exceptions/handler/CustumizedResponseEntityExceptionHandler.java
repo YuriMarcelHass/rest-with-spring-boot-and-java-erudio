@@ -34,7 +34,6 @@ public class CustumizedResponseEntityExceptionHandler extends ResponseEntityExce
 				new Date(), 
 				ex.getMessage(), 
 				request.getDescription(false));
-		ResponseEntity asd = new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
-		return asd;
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
 	}
 }
